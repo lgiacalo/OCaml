@@ -13,6 +13,6 @@ let ft_print_alphabet () =
         print_char '\n'
 
 let main () = 
-        ft_print_alphabet ();
+        ft_print_alphabet ()
 
 let () = main ()
