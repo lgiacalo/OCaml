@@ -3,6 +3,8 @@ let is_digit c =
 
 let ft_string_all func1 str = 
         let len = String.length str in
+        if len > 0
+        then
         let i = 0 in
         let rec loop nb =
            if nb >= len
@@ -16,9 +18,8 @@ let ft_string_all func1 str =
                        false
         in
         loop (i)
-
-
-
+        else
+                false
 
 let answer b =
         if b
@@ -31,6 +32,7 @@ let answer b =
 let main () = 
         answer (ft_string_all is_digit "0123456789");
         answer (ft_string_all is_digit "012EAS67B9");
+        answer (ft_string_all is_digit "");
         print_char '\n'
 
 let () = main ()
