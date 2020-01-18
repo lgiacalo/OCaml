@@ -1,0 +1,15 @@
+.*.swp
+*.cmi
+*.cmx
+*.o
+a.out
+day0*/*.cmi
+day0*/*.cmx
+day0*/*.o
+day0*/a.out
+day0*/.*.swp
+day0*/ex0*/*.cmi
+day0*/ex0*/*.cmx
+day0*/ex0*/*.o
+day0*/ex0*/a.out
+day0*/ex0*/.*.swp
