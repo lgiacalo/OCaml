@@ -11,7 +11,7 @@ let ft_string_all func1 str =
            then true
            else
                let c = String.get str nb in
-               if is_digit c
+               if func1 c
                then
                        true && (loop (nb + 1)) 
                else
