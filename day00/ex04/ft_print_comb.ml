@@ -6,12 +6,19 @@ let ft_print_comb () =
                         let rec loop2 n2 = 
                                 if n2 <= 8
                                 then
-                                begin
-                                        print_int n1;
-                                        print_int n2;
-                                        print_string ", ";
+                                        let rec loop3 n3 = 
+                                                if n3 <= 9
+                                                then
+                                                begin
+                                                 print_int n1;
+                                                 print_int n2;
+                                                 print_int n3;
+                                                 print_string ", ";
+                                                 loop3 (n3 + 1)
+                                                end;
+                                        in
+                                        loop3 (n2 + 1);
                                         loop2 (n2 + 1)
-                                end;
                          in
                          loop2 (n1 + 1);
                          loop1 (n1 + 1)
