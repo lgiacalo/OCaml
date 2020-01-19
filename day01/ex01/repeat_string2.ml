@@ -3,8 +3,10 @@ let repeat_string ?str:(s="x") x =
                 if x < 0
                 then "Error"
                 else if x = 0
-                then ""
+                then "" ^ acc
                 else (repeat_string_terminale s (x - 1) (acc ^ s))
+        in
+        repeat_string_terminale s x ("")
 
 let main () = 
         print_endline (repeat_string (-1));
