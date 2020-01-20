@@ -16,9 +16,8 @@ let leibniz_pi epsi =
     else
         let tmp = leibniz_formula 0 in leibniz_pi_loc tmp 0
 
-
 let () =
-	print_endline "testing delta = -42.: ";
+        print_endline "testing delta = -42.: ";
    print_int (leibniz_pi (-42.));
    print_endline "\ntesting delta = 0.1: ";
    print_int (leibniz_pi 0.1);
@@ -26,4 +25,14 @@ let () =
    print_int (leibniz_pi 0.01);
    print_endline "\ntesting delta = 0.001: ";
    print_int (leibniz_pi 0.001);
+   print_endline "\ntesting delta = 0.0001: ";
+   print_int (leibniz_pi 0.0001);
+   print_endline "\ntesting delta = 0.00001: ";
+   print_int (leibniz_pi 0.00001);
+   print_endline "\ntesting delta = 0.000001: ";
+   print_int (leibniz_pi 0.000001);
+   print_endline "\ntesting delta = 0.0000001: ";
+   print_int (leibniz_pi 0.0000001);
+   print_endline "\ntesting delta = 0.00000001: ";
+   print_int (leibniz_pi 0.00000001);
    print_endline ""
