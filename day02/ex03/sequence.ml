@@ -23,20 +23,19 @@ let string_of_lst lst = match lst with
                 loop lst ""
         )
 
-let sequence n = 
-        if n <= 0
-        then ""
-        else if n = 1
-        then "1"
-        else
-                let rec loop n lst = 
+let sequence n = match n with
+        | 1 -> "1"
+        | _ when n > 1 -> (
+                let rec loop nb lst = 
                 let liste = (encode lst) in
-                if n = 1
+                if nb = 1
                 then liste
                 else
-                        loop (n - 1) liste
+                        loop (nb - 1) liste
                 in
                 string_of_lst (loop (n - 1) [1])
+        )
+        | _ -> ""
 
 
 
@@ -56,6 +55,10 @@ let () =
         print_endline (sequence 4);
         print_string "sequence 5: ";
         print_endline (sequence 5);
+        print_string "sequence 6: ";
+        print_endline (sequence 6);
+        print_string "sequence 7: ";
+        print_endline (sequence 7);
 
 
 
