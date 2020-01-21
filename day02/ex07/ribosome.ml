@@ -49,24 +49,6 @@ type protein            = aminoacid list
 
 (********************************* PRINTS *********************************************)
 
-let string_of_aminoacid (am:aminoacid) = match am with
-        | Stop  -> "Stop"
-        | Ala   -> "Alamine"
-        | Arg   -> "Arginine"
-        | _     -> "a voir"
-
-
-let string_of_protein (prot:protein) = match prot with
-        | [] -> ""
-        | _ -> (
-                let rec loop prot str = match prot with
-                        | [] -> str
-                        | first::last -> loop last (str ^ (string_of_aminoacid first))
-                in
-                loop prot ""
-)
-
-
 let print_nucleobase (base:nucleobase) = match base with
         | A -> print_string "A"
         | T -> print_string "T"
@@ -135,12 +117,7 @@ let print_triplet_base lst = match lst with
 (********************************* CONVERSION *****************************************)
 
 let nucleobase_to_string (base:nucleobase) = match base with
-        | A -> "A"
-        | T -> "T"
-        | C -> "C"
-        | G -> "G"
-        | U -> "U"
-        | _ -> "_"
+        | A -> "A" | T -> "T" | C -> "C" | G -> "G" | U -> "U" | _ -> "_"
 
 
 let helix_to_string (hel:helix) = match hel with
@@ -154,6 +131,41 @@ let helix_to_string (hel:helix) = match hel with
                 in 
                 loop hel ""
         )
+
+let string_of_aminoacid (am:aminoacid) = match am with
+        | Stop  -> "Stop"
+        | Ala   -> "Alamine"
+        | Arg   -> "Arginine"
+        | Asn  -> "Asparagine"
+        | Asp  -> "Aspartique"
+        | Cys  -> "Cysteine"
+        | Gln  -> "Glutamine"
+        | Glu  -> "Glutamique"
+        | Gly  -> "Glycine"
+        | His  -> "Histidine"
+        | Ile  -> "Isoleucine"
+        | Leu  -> "Leucine"
+        | Lys  -> "Lysine"
+        | Met  -> "Methionine"
+        | Phe  -> "Phenylalanine"
+        | Pro  -> "Proline"
+        | Ser  -> "Serine"
+        | Thr  -> "Threomine"
+        | Trp  -> "Tryptophane"
+        | Tyr  -> "Tyrosine"
+        | Val  -> "Valine"
+
+
+let string_of_protein (prot:protein) = match prot with
+        | [] -> ""
+        | _ -> (
+                let rec loop prot str = match prot with
+                        | [] -> str
+                        | first::last -> loop last (str ^ (string_of_aminoacid first))
+                in
+                loop prot ""
+)
+
 
 (********************************* FONCTIONS ******************************************)
 
@@ -218,22 +230,53 @@ let generate_bases_triplets (r:rna) = match r with
                 loop r []
 )
 
+
+let decode_arn (r:rna) = match r with
+        | [] -> []
+        | _ -> (
+                let triplet = generate_bases_triplets r in
+                let rec loop trip lst = match trip with
+                        | (U,A,A)::(U,A,G)::(U,G,A)::last -> (lst @ [Stop])
+                        | (G,C,A)::(G,C,C)::(G,C,G)::(G,C,U)::last -> loop last (lst @ [Ala])
+                        | (A,G,A)::(A,G,G)::(C,G,A)::(C,G,C)::(C,G,G)::(C,G,U)::last -> loop last (lst @ [Arg])
+                        | (A,A,C)::(A,A,U)::last -> loop last (lst @ [Asn])
+                        | (G,A,C)::(G,A,U)::last -> loop last (lst @ [Asp])
+                        | (U,G,C)::(U,G,U)::last -> loop last (lst @ [Cys])
+                        | (C,A,A)::(C,A,G)::last -> loop last (lst @ [Gln])
+                        | (G,A,A)::(G,A,G)::last -> loop last (lst @ [Glu])
+                        | (G,G,A)::(G,G,C)::(G,G,G)::(G,G,U)::last -> loop last (lst @ [Gly])
+                        | (C,A,C)::(C,A,U)::last -> loop last (lst @ [His])
+                        | (A,U,A)::(A,U,C)::(A,U,U)::last -> loop last (lst @ [Ile])
+                        | (C,U,A)::(C,U,C)::(C,U,G)::(C,U,U)::(U,U,A)::(U,U,G)::last -> loop last (lst @ [Leu])
+                        | (A,A,A)::(A,A,G)::last -> loop last (lst @ [Lys])
+                        | (A,U,G)::last -> loop last (lst @ [Met])
+                        | (U,U,C)::(U,U,U)::last -> loop last (lst @ [Phe])
+                        | (C,C,C)::(C,C,A)::(C,C,G)::(C,C,U)::last -> loop last (lst @ [Pro])
+                        | (U,C,A)::(U,C,C)::(U,C,G)::(U,C,U)::(A,G,U)::(A,G,C)::last -> loop last (lst @ [Ser])
+                        | (A,C,A)::(A,C,C)::(A,C,G)::(A,C,U)::last -> loop last (lst @ [Thr])
+                        | (U,G,G)::last -> loop last (lst @ [Trp])
+                        | (U,A,C)::(U,A,U)::last -> loop last (lst @ [Tyr])
+                        | (G,U,A)::(G,U,C)::(G,U,G)::(G,U,U)::last -> loop last (lst @ [Gly])
+                        | _ -> lst
+                in
+                loop triplet []
+)
+
+
 (********************************* MAIN ******************************************)
 
 let () = 
+        Random.self_init ();
 
-        print_endline (helix_to_string (generate_helix 2));
-
-        let hell = generate_helix 2 in
-        print_helix hell;
-        print_helix (complementary_helix hell);
 
         let base:nucleobase = A in
         print_string " A = "; print_endline (nucleobase_to_string (rna_nucleobase_pairing base));
 
-        let helll = generate_helix 4 in
+        let helll = generate_helix 8 in
         print_helix helll;
         print_rna (generate_rna helll);
 
-        print_triplet_base (generate_bases_triplets (generate_rna helll))
+        print_triplet_base (generate_bases_triplets (generate_rna helll));
+
+        print_string (string_of_protein (decode_arn (generate_rna helll)))
 
