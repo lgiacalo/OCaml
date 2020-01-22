@@ -29,12 +29,12 @@ let caesar str n =
                 if (ft_is_upper c)
                 then
                         if (ascii + rot > (int_of_char 'Z'))
-                        then char_of_int ((int_of_char 'A') + ascii + rot - (int_of_char 'Z'))
+                        then char_of_int ((int_of_char 'A') + ascii + rot - (int_of_char 'Z') - 1)
                         else char_of_int (ascii + rot)
                 else if (ft_is_lower c)
                 then
                         if (ascii + rot > (int_of_char 'z'))
-                        then char_of_int ((int_of_char 'a') + ascii + rot - (int_of_char 'z'))
+                        then char_of_int ((int_of_char 'a') + ascii + rot - (int_of_char 'z') - 1)
                         else char_of_int (ascii + rot)
                 else c
          in
@@ -52,6 +52,12 @@ let xor str n =
         String.map ft_xor str
 
 
+let uncaesar str n = 
+        let rot = 26 - (n mod 26) in
+        caesar str rot
+
+
+
 
 
 
@@ -61,16 +67,24 @@ let main () =
 
         print_string "1 -> abcdefghijklmnopqrstuvwxyz :";
         print_string ((caesar "abcdefghijklmnopqrstuvwxyz" 1) ^ " : ");
+        print_endline (uncaesar (caesar "abcdefghijklmnopqrstuvwxyz" 1) 1);
+
         print_string "13 -> abcdefghijklmnopqrstuvwxyz :";
-        print_string ((caesar "abcdefghijklmnopqrstuvwxyz" 13) ^ "\n");
+        print_string ((caesar "abcdefghijklmnopqrstuvwxyz" 13) ^ " : ");
+        print_string ((uncaesar (caesar "abcdefghijklmnopqrstuvwxyz" 13) 13) ^ "\n");
+
         print_string "42 -> 0123456789 :";
         print_string ((caesar "0123456789" 42) ^ "\n");
+
         print_string "2 -> OI2EAS67B9 : ";
         print_string ((caesar "OI2EAS67B9" 2) ^ "\n");
+
         print_string "0 -> Damned ! :";
         print_string ((caesar "Damned !" 0) ^ "\n");
+
         print_string "42 -> [] :";
         print_string ((caesar "" 42) ^ "\n");
+
         print_string "1 -> NBzlk qnbjr ! :";
         print_string ((caesar "NBzlk qnbjr !" 1) ^ "\n");
 
@@ -79,10 +93,7 @@ let main () =
         print_string "1 -> abcdefghijklmnopqrstuvwxyz :";
         let res =  (xor "abcdefghijklmnopqrstuvwxyz" 1) in
         print_endline res;
-        print_string "1 -> ";
-        print_string res;
-        print_string " :";
-        print_endline (xor res 1);
+        print_endline ("1 -> " ^ res ^ " :" ^ (xor res 1));
 
         print_endline "\n\nend"
 
