@@ -36,10 +36,8 @@ let draw_square_string x y size str =
         Graphics.draw_string str
 
         
-let draw_tree_node node = 
+let draw_tree_node node xx yy = 
         let size = 40 in
-        let x = 50 in 
-        let y = 400 in
         let rec loop node x y = match node with
             | Nil -> (draw_square_string x y size "Nil")
             | Node (v, l, r) -> (
@@ -52,13 +50,14 @@ let draw_tree_node node =
                     loop r (x + (size * 2) - 10 + (size  / 2)) (y - size + 10)
             )
         in
-        loop node x y
+        loop node xx yy
 
 
 let main () = 
         Graphics.open_graph " 800x800";
         draw_square 700 700 80;
-        draw_tree_node (Node (21, Node (42, Nil, Node (84, Node (168, Node (84, Nil, Nil), Nil), Node (168, Nil, Node (84, Nil, Nil)))), Nil));
+        draw_tree_node (Node (42, Nil, Nil)) 50 400;
+        draw_tree_node Nil 50 600;
         ignore (Graphics.read_key ())
 
 let () = main ()
