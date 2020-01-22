@@ -85,6 +85,8 @@ let main () =
         
         print_int (size (Node ("AA", Node ("BB", Nil, Node ("CC", Node ("DD", Node ("EE", Nil, Nil), Nil), Node ("FF", Nil, Node ("GG", Nil, Nil)))), Nil)));
         print_char '\n';
-        print_int (height (Node ("AA", Node ("BB", Nil, Node ("CC", Node ("DD", Node ("EE", Nil, Nil), Nil), Node ("FF", Nil, Node ("GG", Nil, Nil)))), Nil)))
+        print_int (height (Node ("AA", Node ("BB", Nil, Node ("CC", Node ("DD", Node ("EE", Nil, Nil), Nil), Node ("FF", Nil, Node ("GG", Nil, Nil)))), Nil)));
+        print_char '\n';
+        print_int (height (Node ("AA", Nil, Node ("BB", Nil, Node ("CC", Nil, Nil)))))
 
 let () = main ()
