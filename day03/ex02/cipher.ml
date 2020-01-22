@@ -22,7 +22,7 @@ let ft_is_upper c =
 let ft_is_lower c = 
         c <= 'z' && c >= 'a'
 
-let caesar str n = 
+let caesar n str = 
         let rot = (n mod 26) in
         let ft_rot c = 
                 let ascii = int_of_char c in
@@ -41,9 +41,9 @@ let caesar str n =
          String.map ft_rot str
 
 
-let rot42 str = caesar str 42
+let rot42 str = caesar 42 str
 
-let xor str n = 
+let xor n str = 
         let ft_xor c =
                 let nb = int_of_char c in
                 let res = (nb lxor n) in
@@ -52,49 +52,73 @@ let xor str n =
         String.map ft_xor str
 
 
-let uncaesar str n = 
-        let rot = 26 - (n mod 26) in
-        caesar str rot
+let rec ft_crypt str lst = match lst with
+        | [] -> str
+        | f::last -> ft_crypt (f str) last
 
 
-
-
-
-
+(*********************************************************************************************************)
+(*
 
 let main () = 
-        print_endline "Caesar : ";
+        print_endline "Rot42 : ";
+        print_string "abcdefghijklmnopqrstuvwxyz : ";
+        print_string ((rot42 "abcdefghijklmnopqrstuvwxyz") ^ " : ");
+        print_endline (unrot42 (rot42 "abcdefghijklmnopqrstuvwxyz"));
 
-        print_string "1 -> abcdefghijklmnopqrstuvwxyz :";
-        print_string ((caesar "abcdefghijklmnopqrstuvwxyz" 1) ^ " : ");
-        print_endline (uncaesar (caesar "abcdefghijklmnopqrstuvwxyz" 1) 1);
+        print_endline "\nCaesar : ";
+        print_string "1 -> abcdefghijklmnopqrstuvwxyz : ";
+        print_string ((caesar 1 "abcdefghijklmnopqrstuvwxyz") ^ " : ");
+        print_endline (uncaesar 1 (caesar 1 "abcdefghijklmnopqrstuvwxyz"));
 
-        print_string "13 -> abcdefghijklmnopqrstuvwxyz :";
-        print_string ((caesar "abcdefghijklmnopqrstuvwxyz" 13) ^ " : ");
-        print_string ((uncaesar (caesar "abcdefghijklmnopqrstuvwxyz" 13) 13) ^ "\n");
+        print_string "13 -> abcdefghijklmnopqrstuvwxyz : ";
+        print_string ((caesar 13 "abcdefghijklmnopqrstuvwxyz") ^ " : ");
+        print_string ((uncaesar 13 (caesar 13 "abcdefghijklmnopqrstuvwxyz")) ^ "\n");
 
-        print_string "42 -> 0123456789 :";
-        print_string ((caesar "0123456789" 42) ^ "\n");
+        print_string "42 -> 0123456789 : ";
+        print_string ((caesar 42 "0123456789") ^ " : ");
+        print_string ((uncaesar 42 (caesar 42 "0123456789")) ^ "\n");
 
         print_string "2 -> OI2EAS67B9 : ";
-        print_string ((caesar "OI2EAS67B9" 2) ^ "\n");
+        print_string ((caesar 2 "OI2EAS67B9") ^ " : ");
+        print_string ((uncaesar 2 (caesar 2 "OI2EAS67B9")) ^ "\n");
 
-        print_string "0 -> Damned ! :";
-        print_string ((caesar "Damned !" 0) ^ "\n");
+        print_string "0 -> Damned ! : ";
+        print_string ((caesar 0 "Damned !") ^ " : ");
+        print_string ((uncaesar 0 (caesar 0 "Damned !")) ^ "\n");
 
-        print_string "42 -> [] :";
-        print_string ((caesar "" 42) ^ "\n");
+        print_string "42 -> [] : ";
+        print_string ((caesar 42 "") ^ " : ");
+        print_string ((uncaesar 42 (caesar 42 "")) ^ "\n");
 
-        print_string "1 -> NBzlk qnbjr ! :";
-        print_string ((caesar "NBzlk qnbjr !" 1) ^ "\n");
+        print_string "1 -> NBzlk qnbjr ! : ";
+        print_string ((caesar 1 "NBzlk qnbjr !") ^ " : ");
+        print_string ((uncaesar 1 (caesar 1 "NBzlk qnbjr !")) ^ "\n");
 
 
         print_endline "\nXor : ";
-        print_string "1 -> abcdefghijklmnopqrstuvwxyz :";
-        let res =  (xor "abcdefghijklmnopqrstuvwxyz" 1) in
+        print_string "1 -> abcdefghijklmnopqrstuvwxyz : ";
+        let res =  (xor 1 "abcdefghijklmnopqrstuvwxyz") in
         print_endline res;
-        print_endline ("1 -> " ^ res ^ " :" ^ (xor res 1));
+        print_endline ("1 -> " ^ res ^ " :" ^ (xor 1 res));
+
+        
+        print_endline "\nFt_crypt : ";
+        print_endline ("Rot42 -> abcd : " ^ (ft_crypt "abcd" [rot42 ; unrot42]));
+
+        print_string ("\"Jwnnm*}mfv*+\" ; [uncaesar 8; xor 10] -> ");
+        print_string ((ft_crypt "Jwnnm*}mfv*+" [uncaesar 8; xor 10]) ^ " : ");
+        print_endline ((ft_uncrypt (ft_crypt "Jwnnm*}mfv*+" [uncaesar 8; xor 10]) [caesar 8; xor 10]));
+
+        print_string "\"Damned ! : \" [rot42; xor 12; caesar 13] -> ";
+        print_string ((ft_crypt "Damned !" [rot42; xor 12; caesar 13]) ^ " : ");
+        print_endline ((ft_uncrypt (ft_crypt "Damned !" [rot42; xor 12; caesar 13]) [unrot42; xor 12; uncaesar 13]));
 
         print_endline "\n\nend"
 
 let () = main ()
+
+
+
+
+ *)
