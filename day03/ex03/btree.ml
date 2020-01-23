@@ -26,6 +26,7 @@ vous devez utiliser l'expression suivante: echec avec "votre message d'erreur ic
 
 type 'a tree = Nil | Node of 'a * 'a tree * 'a tree
 
+(*
 let draw_square x y size = 
         let xx = (x + (size / 2)) in
         let yy = (y + (size / 2)) in
@@ -58,6 +59,7 @@ let draw_tree_node node =
         in
         loop node x y
 
+*)
 
 let size node = match node with
         | Nil -> 0
@@ -108,7 +110,43 @@ let rec add_bst value node = match node with
         | Node (x, l, r) when (value < x) -> (Node (x, (add_bst value l), r))
         | Node (x, l, r) when (value >= x) -> (Node (x, l, (add_bst value r)))
         | _ -> Node (value, Nil, Nil)
-        
+
+let rec delete_bst node value = match node with
+        | Nil -> Nil
+        | Node (x, Nil, Nil) -> (
+                if (value = x) then Nil
+                else Node (x, Nil, Nil)
+        )
+        | Node (x, Nil, r) when (value = x) -> r
+        | Node (x, l, Nil) when (value = x) -> l
+        | Node (x, (Node (xx, _, _) as l), r) when (value = x) -> Node (xx, (delete_bst l xx), r)
+        | Node (x, l, r) -> (
+                if (value < x) then Node (x, (delete_bst l value), r)
+                else Node (x, l, (delete_bst r value))
+        )
+
+       
+
+(*
+let rec delete_bst nv = function
+    | Nil -> Nil 
+(* Node seul, pas de fils *)
+    | Node (v, Nil, Nil) when v = nv -> Nil
+(* Node avec un seul fils : gauche *)
+    | Node (v, (Node (_, _, _) as l), Nil) when v = nv -> l
+(* Node avec un seul fils : droit *)
+    | Node (v, Nil, (Node (_, _, _) as r)) when v = nv -> r
+(* Node avec deux fils *)
+    | Node (v, (Node (lv, _, _) as l), (Node (rv, _, _) as r)) when v = nv ->
+            let tmp = get_val l in
+            Node (tmp, (delete_bst tmp l), r)
+(* On parcoure les branches *)
+    | Node (v, l, r) ->
+            if nv < v then Node (v, (delete_bst nv l), r)
+            else Node (v, l, (delete_bst nv r))
+
+ *)
+
 (**************************************************************************************************************************************************************)
 
 let answer b =
@@ -180,7 +218,15 @@ let main () =
         answer (search_bst 5 bst_two_l);
         answer (is_perfect (bst_two_l));
         answer (is_perfect (add_bst 15 bst_two_l));
+        answer (is_perfect (add_bst 10 bst_two_l));
 
+        print_endline "\nDelete_bst :";
+        answer (search_bst "M" btree_a);
+        print_string "size = "; print_int (size btree_a);print_char '\n';
+        let bst_a = (delete_bst btree_a "M") in
+        answer (search_bst "M" bst_a);
+        print_string "size = "; print_int (size bst_a);print_char '\n';
+        answer (is_btree bst_a);
 
 
 
