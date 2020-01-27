@@ -1,5 +1,5 @@
-RESULT = 
+RESULT = a.out
 SOURCES = .ml
-LIBS = graphics
+LIBS = 
 OCAMLMAKEFILE = OCamlMakefile
 include $(OCAMLMAKEFILE)
