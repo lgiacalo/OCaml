@@ -53,6 +53,24 @@ Le jeu se termine lorsqu'un joueur a une ligne droite de ses symboles sur le pla
 
 
 
+Chapitre V
+Partie bonus
+V.1 Bonus obligatoires
+Ces primes sont considérées comme «obligatoires» car ce sont des améliorations fondamentales et courantes pour votre travail. Les autres bonus ne seront pas pris en compte s'ils ne sont pas pleinement et parfaitement mis en œuvre.
+• Un mode solo contre un IA. Il doit essayer de gagner et vous empêcher de gagner.
+• Laisser les joueurs entrer leur nom et l'afficher à la place de O / X. Les deux joueurs ne peuvent pas utiliser les mêmes noms ou utiliser des noms vides.
+• Laisser les joueurs commencer une nouvelle partie après la fin de la précédente.
+
+V.2 Bonus optionnels
+Vous êtes libre de fournir toutes les fonctionnalités que vous souhaitez en bonus. Mais gardez à l'esprit que tout ce que vous présentez en prime ne doit pas empêcher le programme de se comporter comme spécifié dans la partie obligatoire du sujet. Si votre fonctionnalité modifie le comportement du programme en tant que tel, l'utilisateur final doit pouvoir le désactiver et l'activer au moment de l'exécution (c'est-à-dire sans avoir à recompiler l'application).
+Voici quelques suggestions pour vous:
+• Une interface graphique badass, avec contrôle de la souris et couleurs!
+• Une interface badass ncurses, avec un curseur fléché et des couleurs!
+• Une taille de grille personnalisable! Pourquoi pas 4x4, 5x5 ...?
+• Une imbrication de grille personnalisable! Parce que nous devons aller plus loin.
+• Un chronomètre de jeu comme dans les échecs, Go ou d'autres jeux à somme nulle!
+La seule limite pour cette section est votre imagination, alors allez-y et montrez au monde comment créer des arcs-en-ciel et des licornes avec OCaml!
+
 
 
 
