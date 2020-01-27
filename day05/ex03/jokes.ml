@@ -39,7 +39,8 @@ let () =
 		Random.self_init ();
 		let nb = (nb_lines ic) in
 		let jokes = create_jokes ic nb in
-		print_endline (Array.get jokes (Random.int nb))
+		close_in ic;
+		print_endline (Array.get jokes (Random.int nb));
 
 	with
 		| Sys_error err -> print_endline err
