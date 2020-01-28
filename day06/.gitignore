@@ -1,0 +1,10 @@
+.*.swp
+*.cmi
+*.cmx
+*.o
+a.out
+ex0*/*.cmi
+ex0*/*.cmx
+ex0*/*.o
+ex0*/a.out
+ex0*/.*.swp
