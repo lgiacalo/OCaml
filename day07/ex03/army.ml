@@ -1,21 +1,19 @@
 
-
-
-
 class ['a] army (lst: 'a list) = 
-object
+object(this)
 
-	val	mutable _lst :'a list 	= lst
+	val	_lst :'a list 	= lst
 
+	method get		= _lst
 
-	method add l 	= _lst <- _lst@[l]
+	method add l 	= {< _lst = (_lst@[l]) >}
 	method delete 	= match _lst with
-						| [] -> ()
-						| _ -> _lst <- (List.tl _lst)
+						| [] -> this
+						| _ -> {< _lst = (List.tl _lst) >}
 
+	method delete_all = {< _lst = [] >}
 
-
-	method print_lst_t  = 
+	method print_lst_t  = if (_lst = []) then print_endline "Armée vide" else
 		let rec loop lst = match lst with
 			| [] 	-> ()
 			| h::t 	-> h#talk; loop t
