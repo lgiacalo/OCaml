@@ -1,3 +1,4 @@
+(*      TODO: Retirer propane + butane     *)
 
 class virtual molecule (name, list_atom) = 
 object(self)
