@@ -11,10 +11,11 @@ let main () =
 	print_endline doct#to_string;
 	doct#talk;
 
-	doct#travel_in_time 2000 2050;
-	print_endline doct#to_string;
-	doct#use_sonic_screwdriver
+	let doct_up = doct#travel_in_time 2000 2050 in
+	print_endline doct_up#to_string;
+	doct_up#use_sonic_screwdriver;
 
+	print_endline (doct_up#callRegenerate)#to_string
 
 
 let () = main ()
