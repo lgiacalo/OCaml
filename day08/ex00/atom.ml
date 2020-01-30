@@ -31,9 +31,9 @@ object
 	inherit atom ("Carbon", "C", 6)
 end
 
-class azote =
+class nitrogen =
 object
-	inherit atom ("Azote", "N", 7)
+	inherit atom ("Nitrogen", "N", 7)
 end
 
 class oxygen =
@@ -41,9 +41,9 @@ object
 	inherit atom ("Oxygen", "O", 8)
 end
 
-class fluor =
+class fluorine =
 object
-	inherit atom ("Fluor", "F", 9)
+	inherit atom ("Fluorine", "F", 9)
 end
 
 class sodium =
@@ -51,9 +51,9 @@ object
 	inherit atom ("Sodium", "Na", 11)
 end
 
-class fer =
+class iron =
 object
-	inherit atom ("Fer", "Fe", 26)
+	inherit atom ("Iron", "Fe", 26)
 end
 
 class cobalt =
@@ -66,9 +66,9 @@ object
 	inherit atom ("Nickel", "Ni", 28)
 end
 
-class cuivre =
+class copper =
 object
-	inherit atom ("Cuivre", "Cu", 29)
+	inherit atom ("Copper", "Cu", 29)
 end
 
 class zinc =
