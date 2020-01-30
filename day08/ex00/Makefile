@@ -1,5 +1,5 @@
 RESULT = a.out
-SOURCES = .ml
+SOURCES = atom.ml main.ml
 LIBS = 
 OCAMLMAKEFILE = OCamlMakefile
 include $(OCAMLMAKEFILE)
