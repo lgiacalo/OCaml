@@ -22,5 +22,5 @@ We also learn the imperative and OOP parts of OCaml.
 We have also two rushes (after d04 and d09) and we manipulate graphics library
 such as SDL and GTK.
 
-* [rush00](https://github.com/lgiacalo/ocaml/tree/master/rush00): Monoids and monads.
-* [rush01](https://github.com/lgiacalo/ocaml/tree/master/rush01): Monoids and monads.
+* [rush00](https://github.com/lgiacalo/ocaml/tree/master/rush00): Tic-tac-toe.
+* [rush01](https://github.com/lgiacalo/ocaml/tree/master/rush01): Tamagotchi.
